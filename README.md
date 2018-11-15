@@ -4,4 +4,5 @@
 
 
 如有问题可加入qq群提问
-点击链接加入群聊【kettle-scheduler交流群】：https://jq.qq.com/?_wv=1027&k=59nBFXl
+点击链接加入群聊【QQ群：817362677】【kettle-scheduler交流群】：https://jq.qq.com/?_wv=1027&k=59nBFXl
+
