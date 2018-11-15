@@ -1,0 +1,11 @@
+﻿.line {
+	height: 25px;
+	line-height: 20px;
+	margin: 3px;
+}
+.imp {
+	padding-left: 25px;
+}
+#CronGenTabs li a{
+	padding: 10px 15px;
+}

@@ -1,0 +1,68 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context-4.3.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+						http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- 加载配置文件 -->
+	<bean id="dbPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:resource/*.properties</value>  
+            </list>  
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" /> 
+    </bean>
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="maxActive" value="10" />
+		<property name="minIdle" value="5" />
+	</bean>
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean name="beetlSqlScannerConfigurer" class="org.beetl.sql.ext.spring4.BeetlSqlScannerConfigurer">
+	    <!-- 哪些类可以自动注入 -->
+	    <property name="basePackage" value="com.zhaxd.core.mapper"/>
+	    <!-- 通过类后缀 来自动注入Dao -->
+	    <property name="daoSuffix" value="Dao"/>
+	    <property name="sqlManagerFactoryBeanName" value="sqlManagerFactoryBean"/>
+	</bean>
+	<bean id="sqlManagerFactoryBean" class="org.beetl.sql.ext.spring4.SqlManagerFactoryBean">
+	   <property name="cs" >
+	        <bean class="org.beetl.sql.ext.spring4.BeetlSqlDataSource">
+	            <property name="masterSource" ref="dataSource"></property>
+	        </bean>
+	    </property>
+	    <property name="dbStyle">
+	        <bean class="org.beetl.sql.core.db.MySqlStyle"/>
+	    </property>
+	    <property name="sqlLoader">
+	        <bean class="org.beetl.sql.core.ClasspathLoader">
+	            <property name="sqlRoot" value="/sql"></property>
+	        </bean>
+	    </property>
+	     <property name="nc">
+	        <bean class="org.beetl.sql.core.UnderlinedNameConversion"/>
+	    </property>
+	    <property name="interceptors">
+	        <list>
+	            <bean class="org.beetl.sql.ext.DebugInterceptor"></bean>
+	        </list>
+	    </property>
+	</bean>
+</beans>
