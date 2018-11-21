@@ -499,4 +499,12 @@ public class TransService {
         Long stopTaskCount = kTransDao.allCount(template);
         return stopTaskCount;
     }
+    public String getTransRunState(Integer transId){
+        // 获取到作业对象
+        KTrans kTrans = kTransDao.unique(transId);
+        // 获取Quartz执行的基础信息
+        Map<String, String> quartzBasic = getQuartzBasic(kTrans);
+
+        return QuartzManager.getTriggerState(quartzBasic.get("triggerName"), quartzBasic.get("triggerGroupName"));
+    }
 }

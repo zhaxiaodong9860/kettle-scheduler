@@ -131,6 +131,9 @@ public class JobController {
         KUser kUser = (KUser) request.getSession().getAttribute(Constant.SESSION_ID);
         return JsonUtils.objectToJson(jobService.getStopTaskCount(categoryId, jobName, kUser.getuId()));
     }
-
+    @RequestMapping({"getJobRunState.shtml"})
+    public String getJobRunState(Integer jobId) {
+        return JsonUtils.objectToJson(this.jobService.getJobRunState(jobId));
+    }
 
 }

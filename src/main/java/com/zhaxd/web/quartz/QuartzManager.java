@@ -203,4 +203,29 @@ public class QuartzManager {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * @Description: 获取任务状态
+     * 		NONE: 不存在
+     * 		NORMAL: 正常
+     * 		PAUSED: 暂停
+     * 		COMPLETE:完成
+     * 		ERROR : 错误
+     * 		BLOCKED : 阻塞
+     * @param triggerName   触发器名
+     * @param triggerGroupName
+     * @date 2018年5月21日 下午2:13:45
+     */
+    public static String getTriggerState(String triggerName,String triggerGroupName){
+        TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, triggerGroupName);
+        String name = null;
+        try {
+            Scheduler sched = schedulerFactory.getScheduler();
+            Trigger.TriggerState triggerState = sched.getTriggerState(triggerKey);
+            name = triggerState.name();
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
 }

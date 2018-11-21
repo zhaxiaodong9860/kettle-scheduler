@@ -169,11 +169,35 @@
     };
 
     function transStatusFormatter(value, row, index) {
-        if (value == "1") {
+        var state = "";
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: 'trans/getTransRunState.shtml',
+            data: {
+                "transId": row.transId
+            },
+            success: function (data) {
+                state = data;
+            },
+            error: function () {
+                alert("系统出现问题，请联系管理员");
+            },
+            dataType: 'json'
+        });
+        if (state == "BLOCKED") {
             return "正在运行";
-        } else if (value == "2") {
-            return "已停止";
-        } else {
+        } else if (state == "NORMAL") {
+            return "空闲";
+        } else if(state == "ERROR"){
+            return "错误";
+        }else if(state == "COMPLETE"){
+            return "完成";
+        }else if(state == "PAUSED"){
+            return "暂停";
+        }else if(state == "NONE"){
+            return "停止";
+        }else{
             return "未定义";
         }
     }

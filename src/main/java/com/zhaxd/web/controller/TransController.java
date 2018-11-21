@@ -127,4 +127,8 @@ public class TransController {
         KUser kUser = (KUser) request.getSession().getAttribute(Constant.SESSION_ID);
         return JsonUtils.objectToJson(transService.getStopTaskCount(categoryId, transName, kUser.getuId()));
     }
+    @RequestMapping({"getTransRunState.shtml"})
+    public String getTransRunState(Integer transId) {
+        return JsonUtils.objectToJson(this.transService.getTransRunState(transId));
+    }
 }

@@ -502,4 +502,12 @@ public class JobService {
         Long stopTaskCount = kJobDao.allCount(template);
         return stopTaskCount;
     }
+    public String getJobRunState(Integer jobId){
+        // 获取到作业对象
+        KJob kJob = kJobDao.unique(jobId);
+        // 获取调度任务的基础信息
+        Map<String, String> quartzBasic = getQuartzBasic(kJob);
+
+        return QuartzManager.getTriggerState(quartzBasic.get("triggerName"), quartzBasic.get("triggerGroupName"));
+    }
 }
