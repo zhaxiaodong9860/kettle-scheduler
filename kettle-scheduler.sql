@@ -274,4 +274,4 @@ CREATE TABLE `k_user` (
 -- ----------------------------
 -- Records of k_user
 -- ----------------------------
-INSERT INTO `k_user` VALUES ('1', 'admin', null, null, 'admin', 'cc9e6ea0462b98fe1d3cb09c2b46a838', null, null, null, null, '1');
+INSERT INTO `k_user` VALUES ('1', 'admin', null, null, 'admin', 'b1276925a59fd8d9e1a53c10637f271d', null, null, null, null, '1');
