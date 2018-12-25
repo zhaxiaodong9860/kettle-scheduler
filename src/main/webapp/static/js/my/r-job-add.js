@@ -80,6 +80,7 @@ $("#jobPath").click(function(){
 		var index = layer.open({
 			type: 1,
 			title: '请选择作业',
+			area: ["300px", '100%'],
 			skin: 'layui-layer-rim',
 			content: '<div id="repositoryTree"></div>'
 		});
