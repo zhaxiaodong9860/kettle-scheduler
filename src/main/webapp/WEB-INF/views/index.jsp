@@ -135,7 +135,7 @@
                     seamless></iframe>
         </div>
         <div class="footer">
-            <div class="copy-right">Copyright © 2017 SOOCHOW SECURITIES CO.,LTD. All Rights Reserved.</div>
+            <div class="copy-right"></div>
         </div>
     </div>
     <!--右侧部分结束-->
