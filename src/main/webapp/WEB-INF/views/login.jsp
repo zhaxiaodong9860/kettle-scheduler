@@ -55,7 +55,7 @@ if(window != window.parent){
         </div>
     </form>
 </div>
-<div class="copyright">Copyright © 2017 SOOCHOW SECURITIES CO.,LTD. All Rights Reserved.</div>
+<div class="copyright"></div>
 <script src="static/js/jquery.min.js?v=2.1.4"></script>
 <script src="static/js/bootstrap.min.js?v=3.3.6"></script>
 <script src="static/lib/jquery-backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
