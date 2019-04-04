@@ -123,9 +123,11 @@ public class TransQuartz implements InterruptableJob {
                 recordStatus = 2;
             } finally {
                 if (trans.isFinished()) {
-                    if (trans.getErrors() > 0
-                            && (null == trans.getResult().getLogText() || "".equals(trans.getResult().getLogText()))) {
-                        logText = exception;
+                    if (trans.getErrors() > 0) {
+                        recordStatus = 2;
+                        if (null == trans.getResult().getLogText() || "".equals(trans.getResult().getLogText())){
+                            logText = exception;
+                        }
                     }
                     // 写入转换执行结果
                     StringBuilder allLogFilePath = new StringBuilder();
