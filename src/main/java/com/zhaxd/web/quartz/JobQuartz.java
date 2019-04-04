@@ -126,9 +126,11 @@ public class JobQuartz implements InterruptableJob {
                 recordStatus = 2;
             } finally {
                 if (job.isFinished()) {
-                    if (job.getErrors() > 0
-                            && (null == job.getResult().getLogText() || "".equals(job.getResult().getLogText()))) {
-                        logText = exception;
+                    if (job.getErrors() > 0) {
+                        recordStatus = 2;
+                        if(null == job.getResult().getLogText() || "".equals(job.getResult().getLogText())){
+                            logText = exception;
+                        }
                     }
                     // 写入作业执行结果
                     StringBuilder allLogFilePath = new StringBuilder();
