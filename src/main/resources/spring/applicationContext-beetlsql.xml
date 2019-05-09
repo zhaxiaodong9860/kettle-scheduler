@@ -1,28 +1,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context-4.3.xsd
-						http://www.springframework.org/schema/aop 
-						http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
-						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-						http://www.springframework.org/schema/util 
+						http://www.springframework.org/schema/util
 						http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- 加载配置文件 -->
-	<bean id="dbPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="locations">  
-            <list>  
-                <value>classpath:resource/*.properties</value>  
-            </list>  
+	<bean id="dbPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:resource/*-DEV.properties</value>
+<!--                <value>classpath:resource/*-PROD.properties</value>  -->
+            </list>
         </property>
-        <property name="ignoreUnresolvablePlaceholders" value="true" /> 
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
     </bean>
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -49,7 +50,7 @@
 	        </bean>
 	    </property>
 	    <property name="dbStyle">
-	        <bean class="org.beetl.sql.core.db.MySqlStyle"/>
+	        <bean class="${beetl.db.style}"/>
 	    </property>
 	    <property name="sqlLoader">
 	        <bean class="org.beetl.sql.core.ClasspathLoader">

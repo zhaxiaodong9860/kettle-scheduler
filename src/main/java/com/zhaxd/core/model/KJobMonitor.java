@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KJobMonitor implements Comparable<KJobMonitor>{
 	//监控作业ID
+	@SeqID(name="JOB_MONITOR_ID_SEQ")
 	private Integer monitorId ;
 	//添加人
 	private Integer addUser ;
@@ -28,7 +31,7 @@ public class KJobMonitor implements Comparable<KJobMonitor>{
 
 	public KJobMonitor() {
 	}
-	
+
 	public Integer getMonitorId(){
 		return  monitorId;
 	}
@@ -105,8 +108,8 @@ public class KJobMonitor implements Comparable<KJobMonitor>{
 	}
 
 	@Override
-    public int compareTo(KJobMonitor kJobMonitor) {    
-        return this.getMonitorSuccess() - kJobMonitor.getMonitorSuccess();//按照成功次数排序;  
+    public int compareTo(KJobMonitor kJobMonitor) {
+        return this.getMonitorSuccess() - kJobMonitor.getMonitorSuccess();//按照成功次数排序;
     }
 
 	public KJobMonitor(Integer monitorId, Integer addUser, Integer monitorFail, Integer monitorJob, Integer monitorStatus, Integer monitorSuccess, String runStatus, Date lastExecuteTime, Date nextExecuteTime, String jobName, String categoryName) {

@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KQuartz {
 	//任务ID
+	@SeqID(name="QUARTZ_ID_SEQ")
 	private Integer quartzId ;
 	//添加者
 	private Integer addUser ;
@@ -19,64 +22,64 @@ public class KQuartz {
 	private Date addTime ;
 	//编辑时间
 	private Date editTime ;
-	
+
 	public KQuartz() {
 	}
-	
+
 	public Integer getQuartzId(){
 		return  quartzId;
 	}
 	public void setQuartzId(Integer quartzId ){
 		this.quartzId = quartzId;
 	}
-	
+
 	public Integer getAddUser(){
 		return  addUser;
 	}
 	public void setAddUser(Integer addUser ){
 		this.addUser = addUser;
 	}
-	
+
 	public Integer getDelFlag(){
 		return  delFlag;
 	}
 	public void setDelFlag(Integer delFlag ){
 		this.delFlag = delFlag;
 	}
-	
+
 	public Integer getEditUser(){
 		return  editUser;
 	}
 	public void setEditUser(Integer editUser ){
 		this.editUser = editUser;
 	}
-	
+
 	public String getQuartzCron(){
 		return  quartzCron;
 	}
 	public void setQuartzCron(String quartzCron ){
 		this.quartzCron = quartzCron;
 	}
-	
+
 	public String getQuartzDescription(){
 		return  quartzDescription;
 	}
 	public void setQuartzDescription(String quartzDescription ){
 		this.quartzDescription = quartzDescription;
 	}
-	
+
 	public Date getAddTime(){
 		return  addTime;
 	}
 	public void setAddTime(Date addTime ){
 		this.addTime = addTime;
 	}
-	
+
 	public Date getEditTime(){
 		return  editTime;
 	}
 	public void setEditTime(Date editTime ){
 		this.editTime = editTime;
 	}
-	
+
 }

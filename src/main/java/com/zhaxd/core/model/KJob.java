@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KJob {
     //作业ID
+    @SeqID(name="JOB_ID_SEQ")
     private Integer jobId;
     private Integer categoryId;
     //添加者
