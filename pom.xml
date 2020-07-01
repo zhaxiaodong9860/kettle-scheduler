@@ -32,7 +32,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <org.springframework-version>4.3.1.RELEASE</org.springframework-version>
         <beetlsql-version>2.10.18</beetlsql-version>
-        <mysql-connector-java-version>5.1.38</mysql-connector-java-version>
+        <mysql-connector-java-version>8.0.16</mysql-connector-java-version>
         <druid-version>1.0.29</druid-version>
         <commons-configuration.version>1.10</commons-configuration.version>
         <commons.fileupload-version>1.3.2</commons.fileupload-version>
