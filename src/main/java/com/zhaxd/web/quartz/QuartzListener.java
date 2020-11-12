@@ -1,7 +1,5 @@
 package com.zhaxd.web.quartz;
 
-import java.util.Date;
-
 import com.zhaxd.common.toolkit.Constant;
 import com.zhaxd.core.model.KJob;
 import com.zhaxd.core.model.KTrans;
@@ -9,11 +7,14 @@ import com.zhaxd.web.quartz.model.DBConnectionModel;
 import org.beetl.sql.core.*;
 import org.beetl.sql.core.db.DBStyle;
 import org.beetl.sql.core.db.MySqlStyle;
+import org.beetl.sql.core.db.OracleStyle;
 import org.beetl.sql.ext.DebugInterceptor;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobListener;
+
+import java.util.Date;
 
 public class QuartzListener implements JobListener{
 
@@ -44,10 +45,17 @@ public class QuartzListener implements JobListener{
 		DBConnectionModel DBConnectionModel = (DBConnectionModel) DbConnectionObject;
 		ConnectionSource source = ConnectionSourceHelper.getSimple(DBConnectionModel.getConnectionDriveClassName(),
 				DBConnectionModel.getConnectionUrl(), DBConnectionModel.getConnectionUser(), DBConnectionModel.getConnectionPassword());
-		DBStyle mysql = new MySqlStyle();
+		DBStyle dbStyle = null;
+        if("oracle".equalsIgnoreCase(Constant.DATASOURCE_TYPE)){
+            dbStyle = new OracleStyle();
+        }else if("mysql".equalsIgnoreCase(Constant.DATASOURCE_TYPE)){
+            dbStyle = new MySqlStyle();
+        }else{
+            dbStyle = new OracleStyle();
+        }
 		SQLLoader loader = new ClasspathLoader("/");
 		UnderlinedNameConversion nc = new  UnderlinedNameConversion();
-		SQLManager sqlManager = new SQLManager(mysql, loader,
+		SQLManager sqlManager = new SQLManager(dbStyle, loader,
 				source, nc, new Interceptor[]{new DebugInterceptor()});
 		if (jobtype.equals("1")){
 			KJob kJob = sqlManager.unique(KJob.class,Integer.valueOf(jobId));

@@ -1,22 +1,17 @@
 package com.zhaxd.web.quartz;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Date;
-
+import com.zhaxd.common.kettle.repository.RepositoryUtil;
+import com.zhaxd.common.toolkit.Constant;
+import com.zhaxd.core.model.KJobMonitor;
+import com.zhaxd.core.model.KJobRecord;
+import com.zhaxd.core.model.KRepository;
+import com.zhaxd.web.quartz.model.DBConnectionModel;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.beetl.sql.core.ClasspathLoader;
-import org.beetl.sql.core.ConnectionSource;
-import org.beetl.sql.core.ConnectionSourceHelper;
-import org.beetl.sql.core.DSTransactionManager;
-import org.beetl.sql.core.Interceptor;
-import org.beetl.sql.core.SQLLoader;
-import org.beetl.sql.core.SQLManager;
-import org.beetl.sql.core.UnderlinedNameConversion;
+import org.beetl.sql.core.*;
 import org.beetl.sql.core.db.DBStyle;
 import org.beetl.sql.core.db.MySqlStyle;
+import org.beetl.sql.core.db.OracleStyle;
 import org.beetl.sql.ext.DebugInterceptor;
 import org.pentaho.di.core.ProgressNullMonitorListener;
 import org.pentaho.di.core.exception.KettleException;
@@ -30,12 +25,10 @@ import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepository;
 import org.quartz.*;
 
-import com.zhaxd.common.kettle.repository.RepositoryUtil;
-import com.zhaxd.common.toolkit.Constant;
-import com.zhaxd.core.model.KJobMonitor;
-import com.zhaxd.core.model.KJobRecord;
-import com.zhaxd.core.model.KRepository;
-import com.zhaxd.web.quartz.model.DBConnectionModel;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
 
 @DisallowConcurrentExecution
 public class JobQuartz implements InterruptableJob {
@@ -227,10 +220,17 @@ public class JobQuartz implements InterruptableJob {
         DBConnectionModel DBConnectionModel = (DBConnectionModel) DbConnectionObject;
         ConnectionSource source = ConnectionSourceHelper.getSimple(DBConnectionModel.getConnectionDriveClassName(),
                 DBConnectionModel.getConnectionUrl(), DBConnectionModel.getConnectionUser(), DBConnectionModel.getConnectionPassword());
-        DBStyle mysql = new MySqlStyle();
+        DBStyle dbStyle = null;
+        if("oracle".equalsIgnoreCase(Constant.DATASOURCE_TYPE)){
+            dbStyle = new OracleStyle();
+        }else if("mysql".equalsIgnoreCase(Constant.DATASOURCE_TYPE)){
+            dbStyle = new MySqlStyle();
+        }else{
+            dbStyle = new OracleStyle();
+        }
         SQLLoader loader = new ClasspathLoader("/");
         UnderlinedNameConversion nc = new UnderlinedNameConversion();
-        SQLManager sqlManager = new SQLManager(mysql, loader,
+        SQLManager sqlManager = new SQLManager(dbStyle, loader,
                 source, nc, new Interceptor[]{new DebugInterceptor()});
         DSTransactionManager.start();
         sqlManager.insert(kJobRecord);

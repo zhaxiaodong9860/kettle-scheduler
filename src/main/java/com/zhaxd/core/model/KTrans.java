@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KTrans {
     //转换ID
+    @SeqID(name="TRANS_ID_SEQ")
     private Integer transId;
     private Integer categoryId;
     //添加者

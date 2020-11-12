@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KCategory {
     //分类ID
+    @SeqID(name="CATEGORY_ID_SEQ")
     private Integer categoryId ;
     //分类名称
     private String categoryName;

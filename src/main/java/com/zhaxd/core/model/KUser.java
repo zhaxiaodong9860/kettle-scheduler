@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KUser {
 	//用户ID
+	@SeqID(name="USER_ID_SEQ")
 	private Integer uId ;
 	//添加者
 	private Integer addUser ;
@@ -25,80 +28,80 @@ public class KUser {
 	private Date addTime ;
 	//编辑时间
 	private Date editTime ;
-	
+
 	public KUser() {
 	}
-	
+
 	public Integer getuId(){
 		return  uId;
 	}
 	public void setuId(Integer uId ){
 		this.uId = uId;
 	}
-	
+
 	public Integer getAddUser(){
 		return  addUser;
 	}
 	public void setAddUser(Integer addUser ){
 		this.addUser = addUser;
 	}
-	
+
 	public Integer getDelFlag(){
 		return  delFlag;
 	}
 	public void setDelFlag(Integer delFlag ){
 		this.delFlag = delFlag;
 	}
-	
+
 	public Integer getEditUser(){
 		return  editUser;
 	}
 	public void setEditUser(Integer editUser ){
 		this.editUser = editUser;
 	}
-	
+
 	public String getuAccount(){
 		return  uAccount;
 	}
 	public void setuAccount(String uAccount ){
 		this.uAccount = uAccount;
 	}
-	
+
 	public String getuEmail(){
 		return  uEmail;
 	}
 	public void setuEmail(String uEmail ){
 		this.uEmail = uEmail;
 	}
-	
+
 	public String getuNickname(){
 		return  uNickname;
 	}
 	public void setuNickname(String uNickname ){
 		this.uNickname = uNickname;
 	}
-	
+
 	public String getuPassword(){
 		return  uPassword;
 	}
 	public void setuPassword(String uPassword ){
 		this.uPassword = uPassword;
 	}
-	
+
 	public String getuPhone(){
 		return  uPhone;
 	}
 	public void setuPhone(String uPhone ){
 		this.uPhone = uPhone;
 	}
-	
+
 	public Date getAddTime(){
 		return  addTime;
 	}
 	public void setAddTime(Date addTime ){
 		this.addTime = addTime;
 	}
-	
+
 	public Date getEditTime(){
 		return  editTime;
 	}

@@ -1,9 +1,12 @@
 package com.zhaxd.core.model;
 
+import org.beetl.sql.core.annotatoin.SeqID;
+
 import java.util.Date;
 
 public class KTransMonitor implements Comparable<KTransMonitor> {
     //监控转换ID
+    @SeqID(name="TRANS_MONITOR_ID_SEQ")
     private Integer monitorId;
     //添加人
     private Integer addUser;
