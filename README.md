@@ -105,8 +105,15 @@ Linux: apache-tomcat-9.0.12\bin\startup.sh;
    **解决方法：** 已在新代码中实现支持
 
 
-## 另外
-最后希望大家可以一起维护此项目，如有问题可加入qq群提问 点击链接加入群聊【QQ群：817362677】【kettle-scheduler交流群】：https://jq.qq.com/?_wv=1027&k=59nBFXl
+最后希望大家可以一起维护此项目，如有问题可加入qq群提问
+
+点击链接加入群聊
+
+【kettle-scheduler交流QQ群：817362677（已满）】
+
+【kettle-scheduler交流QQ群2：821614032（已满）】
+
+【kettle-scheduler交流QQ群3：553956378】
 
 详细说明见个人博客：https://blog.csdn.net/zhaxiaodong/article/details/84107102
 
