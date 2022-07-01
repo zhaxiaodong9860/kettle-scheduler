@@ -46,7 +46,7 @@
         <dependency.hadoop-shims-api.revision>80.2017.10.00-28</dependency.hadoop-shims-api.revision>
         <pentaho-big-data-plugin.version>8.0.0.0-28</pentaho-big-data-plugin.version>
         <pdi-osgi-bridge.version>8.0.0.0-28</pdi-osgi-bridge.version>
-        <kafka-clients.version>0.10.2.1</kafka-clients.version>
+        <kafka-clients.version>0.10.2.2</kafka-clients.version>
         <blueprints-core.version>2.6.0</blueprints-core.version>
         <log4j.version>1.2.16</log4j.version>
         <slf4j.version>1.6.1</slf4j.version>
