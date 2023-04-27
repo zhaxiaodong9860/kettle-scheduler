@@ -115,7 +115,7 @@ Linux: apache-tomcat-9.0.12\bin\startup.sh;
 
 【kettle-scheduler交流QQ群3：553956378（已满）】
 
-【kettle-scheduler交流QQ群3：881730283（已满）】
+【kettle-scheduler交流QQ群3：881730283】
 
 
 详细说明见个人博客：https://blog.csdn.net/zhaxiaodong/article/details/84107102
